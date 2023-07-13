@@ -1,13 +1,6 @@
-import Bull, { Job } from "bull";
+import { Job } from "bull";
+import { emailQueue } from ".";
 import emailProcessor from "./emails/consumer";
-import dotenv from "dotenv";
-
-dotenv.config();
-
-// DEFINITION OF THE BULL QUEUE
-export const emailQueue = new Bull("email", {
-  redis: process.env.REDIS_URL,
-});
 
 const handleFailure = (job: Job, err: Error) => {
   if (job.attemptsMade >= (job?.opts?.attempts || 0)) {
@@ -41,9 +34,9 @@ const handleStalled = (job: Job) => {
 };
 
 export const startQueues = () => {
+  console.log("\n Started Running Queues ✅");
   emailQueue.process(emailProcessor);
   emailQueue.on("failed", handleFailure);
   emailQueue.on("completed", handleCompleted);
   emailQueue.on("stalled", handleStalled);
-  console.log("\n Processing  tasks");
 };

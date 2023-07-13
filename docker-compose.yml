@@ -16,19 +16,4 @@ services:
     environment:
       - REDIS_HOSTS=local:redis:6379
     ports:
-      - '8081:8081'
-
-  server:
-    container_name: tutorial__redis_email_backend
-    build:
-      context: ./
-    environment:
-      REDIS_URL: redis:6379
-      CHOKIDAR_USEPOLLING: 'true'
-      CHOKIDAR_INTERVAL: 1000
-    ports:
-     - 3000:3000
-    volumes:
-      - ./:/var/app
-    depends_on:
-      - redis
+      - '8000:8000'
