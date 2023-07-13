@@ -1,5 +1,5 @@
 {
-  "name": "redis-bull-queue",
+  "name": "redis-email-queue",
   "version": "1.0.0",
   "description": "A sample typescript code to setup bull with redis in a nodejs express project to send emails",
   "main": "build/app.js",
