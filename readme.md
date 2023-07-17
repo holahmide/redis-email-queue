@@ -33,7 +33,7 @@ yarn init -y && yarn add dotenv express nodemailer @bull-board/api @bull-board/e
 ```
 
 ```shell
-yarn add typescript nodemon eslint @typescript-eslint/parser @types/nodemailer @typescript-eslint/eslint-plugin @types/node @types/express
+yarn add -D typescript nodemon eslint @typescript-eslint/parser @types/nodemailer @typescript-eslint/eslint-plugin @types/node @types/express ts-node
 ```
 
 Create a new **src** folder then create an **app.ts** file in the folder created.
@@ -47,8 +47,9 @@ import dotenv from "dotenv";
 
 dotenv.config();
 
+const PORT = process.env.PORT || 3000;
+
 const app: Express = express();
-const PORT = process.env.PORT;
 
 app.use(express.json());
 
@@ -131,7 +132,7 @@ Bull is a Node library that implements a fast and robust queue system based on r
 - **Event Listeners**: This helps us to listen to events that happen in the queue. The Event listeners are attacked to every process.
   Now lets get into setting up the queue.
 
-![Image description](https://dev-to-uploads.s3.amazonaws.com/uploads/articles/xcuegsvoqjcz9jhcguty.png)
+![Folder Structure](https://dev-to-uploads.s3.amazonaws.com/uploads/articles/xcuegsvoqjcz9jhcguty.png)
 
 We will be working with the folder structure shown above.
 Starting with defining the queue, let's create a new folder **queues** in the **src** folder and then create an **index.ts** file. Copy and paste the following into the file that was created.
@@ -333,11 +334,11 @@ If you go to the endpoint you should see your job data in your console.
 To setup a redis database for production, you can check the available services provided by your cloud server e.g [Heroku Redis](https://devcenter.heroku.com/articles/heroku-redis), [Redis.com](https://redis.com/) etc. We would be using the redis.com free database for this tutorial.
 Visit [redis.com](https://redis.com/), create an account and proceed to create a free redis database. You should have something like this;
 
-![Image description](https://dev-to-uploads.s3.amazonaws.com/uploads/articles/p731mvc66ye1xi43hmz0.png)
+![redis.com Dashboard](https://dev-to-uploads.s3.amazonaws.com/uploads/articles/p731mvc66ye1xi43hmz0.png)
 
 Click on `connect`, then we will copy the url displayed in the `RedisInsight connection box`.
 
-![Image description](https://dev-to-uploads.s3.amazonaws.com/uploads/articles/siwvvvs7crs5g639cz7r.png)
+![redis.com dashboard](https://dev-to-uploads.s3.amazonaws.com/uploads/articles/siwvvvs7crs5g639cz7r.png)
 
 Click on `copy` to get the full url or replace the url should with the username and password for your account. It will be in this format.
 
