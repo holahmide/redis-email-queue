@@ -6,8 +6,9 @@ import serverAdapter from "./queues/adapter";
 
 dotenv.config();
 
+const PORT = process.env.PORT || 3000;
+
 const app: Express = express();
-const PORT = process.env.PORT;
 
 app.use(express.json());
 
