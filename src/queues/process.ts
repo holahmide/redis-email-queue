@@ -34,9 +34,13 @@ const handleStalled = (job: Job) => {
 };
 
 export const startQueues = () => {
-  console.log("\n Started Running Queues ✅");
-  emailQueue.process(emailProcessor);
-  emailQueue.on("failed", handleFailure);
-  emailQueue.on("completed", handleCompleted);
-  emailQueue.on("stalled", handleStalled);
+  try {
+    emailQueue.process(emailProcessor);
+    emailQueue.on("failed", handleFailure);
+    emailQueue.on("completed", handleCompleted);
+    emailQueue.on("stalled", handleStalled);
+    console.log("\n Queue jobs started successfully ✅");
+  } catch (err) {
+    console.log("Queue Jobs Error: ", err);
+  }
 };
